@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                String     @id @default(uuid())
+  name              String
+  email             String     @unique
+  introduction      String?
+  domain            Domain
+  preferredLanguage Language
+  currentLevel      UserLevel  @default(BEGINNER)
+  topicsCovered     String[]   @default([])
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+  hashed_password   String
+  role              UserRole   @default(user)
+  feedbacks         Feedback[]
+  lessons           Lesson[]
+}
+
+model Lesson {
+  id       String    @id @default(uuid())
+  title    String
+  content  Json
+  level    UserLevel
+  sentAt   DateTime  @default(now())
+  userId   String
+  feedback Feedback?
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  slug String?
+}
+
+model Feedback {
+  id          String     @id @default(uuid())
+  feedback    String
+  rating      Int?
+  levelChange Boolean    @default(false)
+  newLevel    UserLevel?
+  createdAt   DateTime   @default(now())
+  userId      String
+  lessonId    String     @unique
+  lesson      Lesson     @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum UserLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum Domain {
+  FRONTEND
+  BACKEND
+  DEVOPS
+  ML
+  FULLSTACK
+}
+
+enum UserRole {
+  admin
+  user
+}
+
+enum Language {
+  JAVASCRIPT
+  TYPESCRIPT
+  GO
+  RUST
+  PYTHON
+  JAVA
+  CPP
+  CSHARP
+}
