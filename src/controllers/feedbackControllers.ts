@@ -3,6 +3,8 @@ import { uncreatedFeedback } from '../utils/types';
 import { feedbackCreation, findFeedbackByUserId, findFeedbackByLessonId, findFeedbackById } from '../services/feedbackServices';
 import { findLessonById } from '../services/lessonServices'; 
 import { AppError } from '../utils/customErrors';
+import { processQuickRating } from '../services/feedbackServices';
+import jwt from 'jsonwebtoken';
 
 export async function createFeedback(request: FastifyRequest<{Body: uncreatedFeedback}>, reply: FastifyReply): Promise<void> {
     const loggedInUserId = (request as any).user.id;
@@ -59,4 +61,24 @@ export async function getFeedbackById(request: FastifyRequest<{Params: {id: stri
     }
 
     reply.code(200).send(feedback);
+}
+
+export async function handleQuickRate(request: FastifyRequest<{Querystring: {lessonId: string, rating: string, token: string}}>, reply: FastifyReply) {
+    try {
+        const { lessonId, rating, token } = request.query;
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as any;
+        const userId = decoded.id;
+        const message = await processQuickRating(userId, lessonId, Number(rating));
+
+        reply.type('text/html').send(`
+            <div style="font-family: sans-serif; text-align: center; margin-top: 50px;">
+                <h2>Feedback Received</h2>
+                <p>${message}</p>
+                <p>You can close this tab.</p>
+            </div>
+        `);
+    } catch (error) {
+        reply.code(400).send("Invalid or expired feedback link.");
+    }
 }

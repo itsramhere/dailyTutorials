@@ -4,10 +4,7 @@ import { AppError } from '../utils/customErrors';
 import { User } from '@prisma/client';
 import crypto from "crypto";
 import { promisify } from "util";
-import jwt from "jsonwebtoken";
 import {generateToken} from '../utils/authUtils';
-
-const JWT_SECRET = process.env.JWT_SECRET as string;
 
 const pbkdf2 = promisify(crypto.pbkdf2);
 
@@ -57,18 +54,9 @@ export async function loginUser(email: string, password: string): Promise<string
     if(!passwordMatch){
         throw new AppError("Invalid credentials.", 400);
     }
-    const jwtToken = issueToken(thisUser.id, thisUser.email);
+    
+    const jwtToken = generateToken({ id: thisUser.id, email: thisUser.email });
     return jwtToken;
-}
-
-function issueToken(userId: string, userEmail:string): string {
-  return jwt.sign(
-    {id: userId,
-     email: userEmail,
-    },        
-    JWT_SECRET,            
-    { expiresIn: "1h" }    
-  )
 }
 
 async function verifyPassword(

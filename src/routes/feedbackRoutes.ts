@@ -1,9 +1,10 @@
-import { FastifyInstance } from 'fastify';
-import { createFeedback, getFeedbackByUserId, getFeedbackByLessonId, getFeedbackById } from '../controllers/feedbackControllers';
-import { createFeedbackSchema, getFeedbackByUserIdSchema, getFeedbackByLessonIdSchema, getFeedbackByIdSchema } from '../schemas/feedbackSchemas';
-import { isAuthenticated } from '../hooks/authHooks'; // Import your hook
+import {FastifyInstance } from 'fastify';
+import {createFeedback, getFeedbackByUserId, getFeedbackByLessonId, getFeedbackById, handleQuickRate} from '../controllers/feedbackControllers';
+import {createFeedbackSchema, getFeedbackByUserIdSchema, getFeedbackByLessonIdSchema, getFeedbackByIdSchema } from '../schemas/feedbackSchemas';
+import {isAuthenticated } from '../hooks/authHooks'; // Import your hook
 
 export default async function feedbackRoutes(fastify: FastifyInstance): Promise<void> {
+    fastify.get('/quick-rate', handleQuickRate);
     fastify.addHook('onRequest', isAuthenticated);
     
     fastify.post('/add', { schema: createFeedbackSchema }, createFeedback);
