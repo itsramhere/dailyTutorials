@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Lesson" ADD COLUMN "slug" TEXT NOT NULL DEFAULT '';

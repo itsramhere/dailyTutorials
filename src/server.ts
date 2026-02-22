@@ -2,17 +2,11 @@ import 'dotenv/config'
 import Fastify from 'fastify';
 import authRoutes from './routes/authRoutes';
 import userRoutes from './routes/userRoutes';
-import fastifyJwt from '@fastify/jwt';
 import lessonRoutes from './routes/lessonRoutes';
 import feedbackRoutes from './routes/feedbackRoutes';
 
 const fastify = Fastify({
   logger: true
-});
-
-
-fastify.register(fastifyJwt, {
-    secret: process.env.JWT_SECRET as string
 });
 
 fastify.register(authRoutes, {prefix: '/api/auth' });

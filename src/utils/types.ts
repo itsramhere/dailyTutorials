@@ -20,6 +20,7 @@ export interface User {
     updatedAt?: Date;
     hashed_password: string;
     role: "user" | "admin";
+    token?: string;
 }
 
 export interface Lesson{
@@ -44,7 +45,7 @@ export interface Feedback{
 export interface signupUser{
     name: string,
     email: string,
-    introduction: string | null,
+    introduction: string,
     domain: "ML" | "BACKEND" | "FRONTEND" | "DEVOPS" | "FULLSTACK",
     preferredLanguage: 'JAVASCRIPT'| 'TYPESCRIPT'| 'GO'| 'RUST' | 'PYTHON' | 'JAVA'| 'CPP'| 'CSHARP'
     currentLevel: 'BEGINNER'| 'INTERMEDIATE' | 'ADVANCED',
@@ -87,4 +88,11 @@ export interface uncreatedFeedback {
     levelChange: boolean;
     rating: number;
     newLevel?: 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED' | null;
+}
+
+export interface elasticFile{
+    title: string;
+    userLevel: string;
+    lessonId: string;
+    userId: string;
 }

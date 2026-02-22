@@ -6,7 +6,8 @@ import {isAuthenticated} from '../hooks/authHooks';
 
 export default async function userRoutes(fastify: FastifyInstance){
  fastify.patch<{Body:topicChangeBody}>('topics/add',{
-    schema: addTopicToUserSchema
+    schema: addTopicToUserSchema,
+    preHandler: isAuthenticated
  }, addTopicToUser
  );
  

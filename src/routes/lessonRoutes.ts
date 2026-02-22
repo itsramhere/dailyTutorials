@@ -1,8 +1,11 @@
 import {FastifyInstance} from 'fastify';
 import {createLesson, getLessonById, getLessonByTopic, getAllLessonsByUserId, getUserLessonsInDateRange} from '../controllers/lessonControllers';
 import {getUserLessonsInDateRangeSchema, getAllLessonsByUserIdSchema, getLessonByTopicSchema, getLessonByIdSchema, createLessonSchema} from '../schemas/lessonSchemas';
+import {generateUserLesson} from '../controllers/lessonControllers';
+import {isAuthenticated} from '../hooks/authHooks';
 
 export default async function lessonRoutes(fastify: FastifyInstance){
+    fastify.addHook('onRequest', isAuthenticated);
 
     fastify.post('/add', {
         schema: createLessonSchema
@@ -22,5 +25,7 @@ export default async function lessonRoutes(fastify: FastifyInstance){
 
     fastify.post('/in-date-range', {
         schema: getUserLessonsInDateRangeSchema
-    }, getUserLessonsInDateRange)
+    }, getUserLessonsInDateRange);
+
+    fastify.post('/generate/:userId', generateUserLesson);
 };

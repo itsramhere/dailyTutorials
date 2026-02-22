@@ -5,6 +5,7 @@ import { User } from '@prisma/client';
 import crypto from "crypto";
 import { promisify } from "util";
 import jwt from "jsonwebtoken";
+import {generateToken} from '../utils/authUtils';
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
@@ -21,7 +22,7 @@ async function hashPassword(password: string): Promise<string>{
   return `${ITERATIONS}:${salt}:${hash}`;
 }
 
-export async function newUser(user: signupUser): Promise<User>{
+export async function newUser(user: signupUser): Promise<User & { token: string }>{
   const existing = await getUserByEmail(user.email);
 
   if (existing) {
@@ -30,7 +31,7 @@ export async function newUser(user: signupUser): Promise<User>{
 
   const hashedPassword = await hashPassword(user.password);
 
-  return createUser({
+  const createdUser = await createUser({
     name: user.name,
     email: user.email,
     introduction: user.introduction,
@@ -41,6 +42,10 @@ export async function newUser(user: signupUser): Promise<User>{
     hashed_password: hashedPassword,
     role: user.role || 'user'
   });
+
+  const token = generateToken({ id: createdUser.id, email: createdUser.email });
+  return { ...createdUser, token };
+
 }
 
 export async function loginUser(email: string, password: string): Promise<string>{

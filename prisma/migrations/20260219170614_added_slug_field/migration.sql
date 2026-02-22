@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Lesson" ALTER COLUMN "slug" DROP NOT NULL,
+ALTER COLUMN "slug" DROP DEFAULT;
