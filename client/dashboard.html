@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Syntax</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+
+  <div class="dashboard-layout">
+
+    <!-- ========== LEFT SIDEBAR ========== -->
+    <aside class="sidebar">
+      <!-- Logo -->
+      <div class="logo">
+        <span class="logo-dot"></span>
+        <span class="logo-text">Syntax</span>
+      </div>
+
+      <!-- Navigation Sections -->
+      <nav class="sidebar-nav">
+        
+        <div class="nav-section">
+          <h3 class="nav-section-title">LEARN</h3>
+          <a href="#" class="nav-item active">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </span>
+            <span>Daily curriculum</span>
+          </a>
+          <a href="#" class="nav-item">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </span>
+            <span>Lesson reader</span>
+          </a>
+
+        </div>
+
+        <div class="nav-section">
+          <h3 class="nav-section-title">EXPLORE</h3>
+          <a href="#" class="nav-item">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            </span>
+            <span>Topic library</span>
+          </a>
+
+        </div>
+
+        <div class="nav-section">
+          <h3 class="nav-section-title">ACCOUNT</h3>
+          <a href="#" class="nav-item">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+            </span>
+            <span>Preferences</span>
+          </a>
+          <a href="#" class="nav-item">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </span>
+            <span>Give feedback</span>
+          </a>
+          <a href="index.html" class="nav-item" id="nav-home">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </span>
+            <span>Home</span>
+          </a>
+          <a href="#" class="nav-item" id="nav-logout">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            </span>
+            <span>Logout</span>
+          </a>
+        </div>
+
+      </nav>
+    </aside>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content">
+      
+      <!-- Top Navigation Bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="page-title">Daily<br>Curriculum</h1>
+        </div>
+        
+        <div class="topbar-center">
+          <div class="view-pills">
+            <button class="pill active">Feed</button>
+            <button class="pill">Calendar</button>
+
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="server-time" id="server-time">
+            <!-- Will be populated by JS -->
+            Sun, 5<br>Apr 2026
+          </div>
+        </div>
+      </header>
+
+      <!-- Dynamic Page Content -->
+      <div class="page-content" id="page-content">
+        
+        <!-- === FEED VIEW === -->
+        <div class="view-container feed-view active" id="view-feed">
+          <p class="section-label">TODAY'S LESSON</p>
+          
+          <div class="lesson-card main-card">
+            <div class="lesson-card-content">
+              
+              <div class="lesson-tags">
+                <span class="tag">Rust &middot; Memory management</span>
+              </div>
+              
+              <h2 class="lesson-title">Ownership & Borrowing<br>in Rust</h2>
+              
+              <div class="lesson-meta">
+                <div class="meta-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  18 min read
+                </div>
+                <div class="meta-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  Intermediate
+                </div>
+                <div class="meta-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                  Backend systems
+                </div>
+              </div>
+              
+              <p class="lesson-summary">
+                Understand how Rust's ownership model eliminates entire classes of bugs at compile time &mdash; no garbage collector needed. We'll work through borrowing rules, lifetimes, and slices with practical examples.
+              </p>
+              
+              <div class="lesson-actions">
+                <button class="btn btn-primary">Start reading</button>
+              </div>
+
+            </div>
+            
+            <div class="lesson-card-graphic">
+              <div class="graphic-placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="8" width="8" height="8" rx="1"></rect>
+                  <path d="M11 12h4"></path>
+                  <rect x="15" y="8" width="8" height="8" rx="1" stroke-dasharray="2 2"></rect>
+                  <text x="7" y="13" font-size="6" fill="#2563eb" stroke="none">&amp;</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- === HISTORY VIEW === -->
+        <div class="view-container preferences-view" id="view-preferences">
+          <p class="section-label">PERSONALIZATION MATRIX</p>
+
+          <div class="preferences-panel">
+            
+            <!-- Language Setting -->
+            <div class="pref-row">
+              <div class="pref-info">
+                <h3 class="pref-title">Language</h3>
+                <p class="pref-desc">Current teaching language</p>
+              </div>
+              <div class="pref-control">
+                <select class="pref-select" id="pref-language">
+                  <option value="JAVASCRIPT">JavaScript</option>
+                  <option value="TYPESCRIPT">TypeScript</option>
+                  <option value="PYTHON">Python</option>
+                  <option value="GO">Go</option>
+                  <option value="RUST">Rust</option>
+                  <option value="JAVA">Java</option>
+                  <option value="CPP">C++</option>
+                  <option value="CSHARP">C#</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Level Setting -->
+            <div class="pref-row">
+              <div class="pref-info">
+                <h3 class="pref-title">Level</h3>
+                <p class="pref-desc">Lesson difficulty</p>
+              </div>
+              <div class="pref-control">
+                <select class="pref-select" id="pref-level">
+                  <option value="BEGINNER">Beginner</option>
+                  <option value="INTERMEDIATE">Intermediate</option>
+                  <option value="ADVANCED">Advanced</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Domain Setting -->
+            <div class="pref-row">
+              <div class="pref-info">
+                <h3 class="pref-title">Domain</h3>
+                <p class="pref-desc">Focus area</p>
+              </div>
+              <div class="pref-control">
+                <select class="pref-select" id="pref-domain">
+                  <option value="FRONTEND">Frontend</option>
+                  <option value="BACKEND">Backend</option>
+                  <option value="FULLSTACK">Fullstack</option>
+                  <option value="ML">Machine Learning</option>
+                  <option value="DEVOPS">DevOps</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Save Action -->
+            <div class="pref-row" style="border-bottom: none; justify-content: flex-end; padding-bottom: 0;">
+              <button class="btn btn-primary" id="btn-save-prefs">Save preferences</button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- === TOPIC LIBRARY VIEW === -->
+        <div class="view-container topic-library-view" id="view-topics">
+          <p class="section-label">TOPIC LIBRARY</p>
+
+          <div class="topic-search-wrap">
+            <svg class="topic-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input
+              type="text"
+              id="topic-search"
+              class="topic-search-input"
+              placeholder="Search topics…"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="topic-grid" id="topic-grid">
+            <!-- Cards populated by JS -->
+          </div>
+
+          <p class="topic-empty-state" id="topic-empty" style="display:none;">
+            No topics found matching your search.
+          </p>
+        </div>
+
+        <!-- === FEEDBACK VIEW === -->
+        <div class="view-container feedback-view" id="view-feedback">
+          <p class="section-label">GIVE FEEDBACK</p>
+
+          <div class="preferences-panel form-panel">
+            <div id="feedback-success-message" style="display: none; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; background-color: rgba(20, 184, 166, 0.1); color: #14b8a6; border: 1px solid rgba(20, 184, 166, 0.2); text-align: center;">
+              Your feedback has been submitted successfully!
+            </div>
+            
+            <form id="feedback-form">
+              <!-- Lesson Dropdown -->
+              <div class="pref-row form-row">
+                <div class="pref-info">
+                  <h3 class="pref-title">Select Lesson</h3>
+                  <p class="pref-desc">Choose from your last 5 lessons</p>
+                </div>
+                <div class="pref-control">
+                  <select class="pref-select" id="feedback-lesson-select" required>
+                    <option value="" disabled selected>Loading lessons...</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Rating System -->
+              <div class="pref-row form-row">
+                <div class="pref-info">
+                  <h3 class="pref-title">Rating</h3>
+                  <p class="pref-desc">Rate this lesson (1-5)</p>
+                </div>
+                <div class="pref-control rating-control">
+                  <div class="star-rating" id="star-rating">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                  </div>
+                  <input type="hidden" id="feedback-rating" value="0" required />
+                </div>
+              </div>
+
+              <!-- Change Level Question -->
+              <div class="pref-row form-row">
+                <div class="pref-info">
+                  <h3 class="pref-title">Change Level</h3>
+                  <p class="pref-desc">Would you like to adjust your difficulty level?</p>
+                </div>
+                <div class="pref-control" style="justify-content: flex-end;">
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="feedback-level-change">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- New Level Dropdown (Hidden initially) -->
+              <div class="pref-row form-row" id="feedback-new-level-row" style="display: none;">
+                <div class="pref-info">
+                  <h3 class="pref-title">New Level</h3>
+                  <p class="pref-desc">Select your desired difficulty</p>
+                </div>
+                <div class="pref-control">
+                  <select class="pref-select" id="feedback-new-level">
+                    <option value="BEGINNER">Beginner</option>
+                    <option value="INTERMEDIATE">Intermediate</option>
+                    <option value="ADVANCED">Advanced</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Feedback Text -->
+              <div class="pref-row form-row" style="flex-direction: column; align-items: flex-start;">
+                <div class="pref-info" style="margin-bottom: 0.8rem; width: 100%;">
+                  <h3 class="pref-title">Your Feedback</h3>
+                  <p class="pref-desc">What did you think of the lesson content?</p>
+                </div>
+                <textarea id="feedback-text" class="feedback-textarea" rows="4" placeholder="Enter your feedback here..." required></textarea>
+              </div>
+
+              <!-- Submit -->
+              <div class="pref-row form-row" style="border-bottom: none; justify-content: flex-end; padding-bottom: 0; padding-top: 1.5rem;">
+                <button type="submit" class="btn btn-primary" id="btn-submit-feedback">Submit Feedback</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- === LESSON READER VIEW === -->
+        <div class="view-container reader-view" id="view-history">
+          <div class="reader-panel">
+            <div class="reader-header">
+              <div class="reader-header-top">
+                <span class="reader-title-label" id="reader-meta-label">Lesson Details</span>
+                <span class="reader-progress-label">0% completed</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+            
+            <div class="reader-body">
+              <h1 class="reader-h1" id="reader-title">Select a lesson to read</h1>
+              <div id="reader-content">
+                <p class="reader-p">Your lesson content will appear here.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </main>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

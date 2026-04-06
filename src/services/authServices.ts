@@ -4,11 +4,12 @@ import { AppError } from '../utils/customErrors';
 import { User } from '@prisma/client';
 import crypto from "crypto";
 import { promisify } from "util";
-import {generateToken} from '../utils/authUtils';
+import { generateToken } from '../utils/authUtils';
+import { sendWelcomeEmail } from './emailServices';
 
 const pbkdf2 = promisify(crypto.pbkdf2);
 
-async function hashPassword(password: string): Promise<string>{
+export async function hashPassword(password: string): Promise<string> {
   const salt = crypto.randomBytes(16).toString("hex");
   const ITERATIONS = 100_000;
   const KEY_LENGTH = 64;
@@ -19,7 +20,7 @@ async function hashPassword(password: string): Promise<string>{
   return `${ITERATIONS}:${salt}:${hash}`;
 }
 
-export async function newUser(user: signupUser): Promise<User & { token: string }>{
+export async function newUser(user: signupUser): Promise<User & { token: string }> {
   const existing = await getUserByEmail(user.email);
 
   if (existing) {
@@ -41,22 +42,28 @@ export async function newUser(user: signupUser): Promise<User & { token: string 
   });
 
   const token = generateToken({ id: createdUser.id, email: createdUser.email });
+
+  // Send welcome email asynchronously
+  sendWelcomeEmail(createdUser.email, createdUser.name).catch((err) => {
+    console.error("Failed to send welcome email:", err);
+  });
+
   return { ...createdUser, token };
 
 }
 
-export async function loginUser(email: string, password: string): Promise<string>{
-    const thisUser = await getUserByEmail(email);
-    if(!thisUser){
-        throw new AppError("Invalid credentials.", 400);
-    }
-    const passwordMatch = await verifyPassword(password, thisUser.hashed_password);
-    if(!passwordMatch){
-        throw new AppError("Invalid credentials.", 400);
-    }
-    
-    const jwtToken = generateToken({ id: thisUser.id, email: thisUser.email });
-    return jwtToken;
+export async function loginUser(email: string, password: string): Promise<string> {
+  const thisUser = await getUserByEmail(email);
+  if (!thisUser) {
+    throw new AppError("Invalid credentials.", 400);
+  }
+  const passwordMatch = await verifyPassword(password, thisUser.hashed_password);
+  if (!passwordMatch) {
+    throw new AppError("Invalid credentials.", 400);
+  }
+
+  const jwtToken = generateToken({ id: thisUser.id, email: thisUser.email });
+  return jwtToken;
 }
 
 async function verifyPassword(
@@ -85,3 +92,4 @@ async function verifyPassword(
     Buffer.from(computedHash, "hex")
   );
 }
+

@@ -64,3 +64,58 @@ export async function sendDailyLessonEmail(
     html: emailHtml,
   });
 }
+
+export async function sendLoginEmail(userEmail: string): Promise<void> {
+  const emailHtml = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        body { font-family: sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+      </style>
+    </head>
+    <body>
+      <h2>New Login Alert</h2>
+      <p>We noticed a new login to your Daily Tutorials account.</p>
+      <p>If this was you, you can safely ignore this email.</p>
+      <p>If you didn't do this, please secure your account immediately.</p>
+    </body>
+    </html>
+  `;
+
+  await transporter.sendMail({
+    from: '"Daily Tutorials" <noreply@yourdomain.com>',
+    to: userEmail,
+    subject: `Security Alert: New Login`,
+    html: emailHtml,
+  });
+}
+
+export async function sendWelcomeEmail(userEmail: string, userName: string): Promise<void> {
+  const emailHtml = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        body { font-family: sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+      </style>
+    </head>
+    <body>
+      <h2>Welcome to Daily Tutorials, ${userName}!</h2>
+      <p>We are thrilled to have you here.</p>
+      <p>Get ready to enhance your skills with daily bite-sized lessons tailored just for you.</p>
+      <p>Stay tuned for your first lesson!</p>
+      <br />
+      <p>Best Regards,</p>
+      <p>The Daily Tutorials Team</p>
+    </body>
+    </html>
+  `;
+
+  await transporter.sendMail({
+    from: '"Daily Tutorials" <noreply@yourdomain.com>',
+    to: userEmail,
+    subject: `Welcome to Daily Tutorials, ${userName}!`,
+    html: emailHtml,
+  });
+}

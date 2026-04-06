@@ -21,6 +21,10 @@ exports.signupSchema = {
             currentLevel: {
                 type: 'string',
                 enum: ["BEGINNER", "INTERMEDIATE", "ADVANCED"]
+            },
+            role: {
+                type: 'string',
+                enum: ['user', 'admin']
             }
         }
     }

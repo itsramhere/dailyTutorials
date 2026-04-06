@@ -1,0 +1,261 @@
+/* ========== ABOUT PAGE STYLES ========== */
+
+/* Scroll reveal animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Allow vertical scroll on about page */
+.about-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #0a0a0a;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* ========== ABOUT HEADER ========== */
+.about-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 3rem;
+  z-index: 100;
+  gap: 3rem;
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.95) 0%, transparent 100%);
+}
+
+.about-header .nav-link {
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.4s ease;
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.about-header .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: #ffffff;
+  transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.about-header .nav-link:hover {
+  color: #ffffff;
+}
+
+.about-header .nav-link:hover::after {
+  width: 100%;
+}
+
+/* ========== HERO INTRO ========== */
+.about-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 4rem 6rem;
+}
+
+.about-hero-text {
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: #ffffff;
+  max-width: 900px;
+  text-align: center;
+  animation: fadeInUp 1s cubic-bezier(0.65, 0, 0.35, 1) 0.3s both;
+}
+
+.about-hero-text .highlight {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ========== CONTENT SECTIONS ========== */
+.about-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 4rem 10rem;
+}
+
+.about-section {
+  margin-bottom: 10rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+              transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.about-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 3rem;
+}
+
+/* ========== DESCRIPTION TEXT ========== */
+.about-description {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 700px;
+}
+
+/* ========== FEATURE / EXPERIENCE LIST ========== */
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about-list-item {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.about-list-item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.list-item-title {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.list-item-detail {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.1em;
+  text-align: right;
+}
+
+/* ========== STATS / NUMBERS ========== */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+}
+
+.stat-item {
+  text-align: left;
+}
+
+.stat-number {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ========== TECH STACK GRID ========== */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.tech-item {
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.08em;
+  transition: border-color 0.4s ease, color 0.4s ease;
+}
+
+.tech-item:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* ========== FOOTER ========== */
+.about-footer {
+  text-align: center;
+  padding: 4rem 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.25);
+  text-transform: uppercase;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 7rem 2rem 4rem;
+  }
+
+  .about-content {
+    padding: 0 2rem 6rem;
+  }
+
+  .about-section {
+    margin-bottom: 6rem;
+  }
+
+  .about-list-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .list-item-detail {
+    text-align: left;
+  }
+
+  .about-header {
+    padding: 1.5rem 2rem;
+    gap: 2rem;
+  }
+}

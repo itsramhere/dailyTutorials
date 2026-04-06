@@ -12,11 +12,11 @@ export async function generateAndSaveLessonWorkflow(userId: string) {
     if (!user) throw new AppError(`User ${userId} not found.`, 404);
 
     const plannedTopic = await AIService.generateTitleofEssay(user.id);
-
     const cachedLessonId = await getFromIndex(plannedTopic, user.currentLevel);
     
     let finalTitle = "";
     let finalContentString = "";
+    let finalLessonId = ""; 
 
     if (cachedLessonId) {
         const existingLesson = await findLessonById(cachedLessonId);
@@ -31,9 +31,25 @@ export async function generateAndSaveLessonWorkflow(userId: string) {
             const generated = await AIService.generateDailyEssayForUser(user.id, plannedTopic);
             finalTitle = generated.title;
             finalContentString = generated.content;
+
+            const newLesson = await lessonCreation({
+                title: finalTitle,
+                content: { markdown: finalContentString },
+                level: user.currentLevel,
+                userId: user.id
+            }, user.id);
+
+            await writeToIndex({
+                title: finalTitle,
+                userLevel: user.currentLevel,
+                lessonId: newLesson.id,
+                userId: user.id
+            });
+            finalLessonId = newLesson.id;
         } else {
             finalTitle = existingLesson.title;
             finalContentString = (existingLesson.content as any).markdown;
+            finalLessonId = existingLesson.id;
         }
     } else {
         const generated = await AIService.generateDailyEssayForUser(user.id, plannedTopic);
@@ -53,9 +69,9 @@ export async function generateAndSaveLessonWorkflow(userId: string) {
             lessonId: newLesson.id,
             userId: user.id
         });
+        finalLessonId = newLesson.id;
     }
-
-    await sendDailyLessonEmail(user.email, finalTitle, finalContentString);
+    await sendDailyLessonEmail(user.email, finalTitle, finalContentString, finalLessonId, user.id);
 
     const alreadyCovered = user.topicsCovered.some(
         (t) => toSlug(t) === toSlug(finalTitle)
@@ -66,7 +82,7 @@ export async function generateAndSaveLessonWorkflow(userId: string) {
     }
 
     return { 
-        message: cachedLessonId ? "Lesson retrieved from cache and sent" : "New lesson generated, cached, and sent", 
+        message: finalLessonId === cachedLessonId ? "Lesson retrieved from cache and sent" : "New lesson generated, cached, and sent", 
         title: finalTitle 
     };
 }

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="dailyTutorials — AI-powered personalized daily programming tutorials tailored to your skill level and learning goals." />
+  <title>dailyTutorials</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader">
+    <div class="loader-percentage">0%</div>
+    <div class="loader-bar-container">
+      <div class="loader-bar"></div>
+    </div>
+  </div>
+
+  <!-- Grain + Vignette Overlays -->
+  <div class="grain"></div>
+  <div class="vignette"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="login.html?mode=login" class="nav-link" id="nav-login">Login</a>
+    <a href="about.html" class="nav-link" id="nav-about">About</a>
+  </header>
+
+  <script>
+    // If user is logged in, swap "Login" to "Lessons"
+    (function () {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const loginLink = document.getElementById('nav-login');
+        if (loginLink) {
+          loginLink.textContent = 'Lessons';
+          loginLink.href = 'dashboard.html';
+        }
+      }
+    })();
+  </script>
+
+  <!-- Gallery -->
+  <main class="gallery">
+    <div class="slides-container">
+
+      <!-- Slide 1 -->
+      <section class="slide" data-index="0">
+        <div class="slide-bg" style="background-image: url('./src/assets/1.jpg');"></div>
+        <div class="slide-overlay"></div>
+        <h1 class="slide-title">The Daily<br>Curriculum Engine</h1>
+        <span class="slide-subtitle">001 — Concept</span>
+      </section>
+
+      <!-- Slide 2 -->
+      <section class="slide" data-index="1">
+        <div class="slide-bg" style="background-image: url('./src/assets/2.jpg');"></div>
+        <div class="slide-overlay"></div>
+        <h1 class="slide-title">Adaptive Lesson<br>Architecture</h1>
+        <span class="slide-subtitle">002 — Structure</span>
+      </section>
+
+      <!-- Slide 3 -->
+      <section class="slide" data-index="2">
+        <div class="slide-bg" style="background-image: url('./src/assets/3.jpg');"></div>
+        <div class="slide-overlay"></div>
+        <h1 class="slide-title">AI-Crafted<br>Knowledge Paths</h1>
+        <span class="slide-subtitle">003 — Intelligence</span>
+      </section>
+
+      <!-- Slide 4 -->
+      <section class="slide" data-index="3">
+        <div class="slide-bg" style="background-image: url('./src/assets/4.jpg');"></div>
+        <div class="slide-overlay"></div>
+        <h1 class="slide-title">Continuous Skill<br>Generation</h1>
+        <span class="slide-subtitle">004 — Growth</span>
+      </section>
+
+      <!-- Slide 5 -->
+      <section class="slide" data-index="4">
+        <div class="slide-bg" style="background-image: url('./src/assets/5.jpg');"></div>
+        <div class="slide-overlay"></div>
+        <h1 class="slide-title">Tailored Tutorial<br>Delivery</h1>
+        <span class="slide-subtitle">005 — Precision</span>
+      </section>
+
+      <!-- Slide 6 -->
+      <section class="slide" data-index="5">
+        <div class="slide-bg" style="background-image: url('./src/assets/6.jpg');"></div>
+        <div class="slide-overlay"></div>
+        <h1 class="slide-title">Precision Learning<br>Sequences</h1>
+        <span class="slide-subtitle">006 — Mastery</span>
+      </section>
+
+      <!-- Slide 7 -->
+      <section class="slide" data-index="6">
+        <div class="slide-bg" style="background-image: url('./src/assets/7.jpg');"></div>
+        <div class="slide-overlay"></div>
+        <h1 class="slide-title">Dynamic Content<br>Generation</h1>
+        <span class="slide-subtitle">007 — Evolution</span>
+      </section>
+
+      <!-- Slide 8 -->
+      <section class="slide" data-index="7">
+        <div class="slide-bg" style="background-image: url('./src/assets/8.jpg');"></div>
+        <div class="slide-overlay"></div>
+        <h1 class="slide-title">The Personalization<br>Matrix</h1>
+        <span class="slide-subtitle">008 — Identity</span>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Arrow Navigation -->
+  <button class="nav-arrow nav-arrow--prev" id="prev-arrow" aria-label="Previous slide">+</button>
+  <button class="nav-arrow nav-arrow--next" id="next-arrow" aria-label="Next slide">+</button>
+
+  <!-- Page Counter -->
+  <div class="page-counter">
+    <span class="current">1</span>
+    <span class="separator">—</span>
+    <span class="total">8</span>
+  </div>
+
+  <!-- Thumbnail Strip -->
+  <div class="thumbnail-strip">
+    <div class="thumbnail" data-index="0"></div>
+    <div class="thumbnail" data-index="1"></div>
+    <div class="thumbnail" data-index="2"></div>
+    <div class="thumbnail" data-index="3"></div>
+    <div class="thumbnail" data-index="4"></div>
+    <div class="thumbnail" data-index="5"></div>
+    <div class="thumbnail" data-index="6"></div>
+    <div class="thumbnail" data-index="7"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

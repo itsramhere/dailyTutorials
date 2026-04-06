@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Login or sign up for dailyTutorials — personalized AI-powered programming tutorials." />
+  <title>Login — dailyTutorials</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+
+  <div class="login-page">
+
+    <!-- Background image -->
+    <div class="login-bg"></div>
+    <div class="login-bg-overlay"></div>
+
+    <!-- Form Panel -->
+    <div class="login-panel">
+      <a href="index.html" class="login-back">← Home</a>
+
+      <div class="login-panel-inner">
+
+        <!-- Heading -->
+        <h1 class="login-heading" id="auth-heading">Get Started Now</h1>
+        <p class="login-subheading" id="auth-subheading">Create your account to start learning</p>
+
+        <!-- Error / Success messages -->
+        <div class="form-error" id="form-error"></div>
+        <div class="form-success" id="form-success"></div>
+
+        <form id="auth-form" autocomplete="off" novalidate>
+
+          <!-- ===== SIGNUP-ONLY FIELDS ===== -->
+          <div class="signup-fields visible" id="signup-fields">
+
+            <!-- Name -->
+            <div class="form-group">
+              <label class="form-label" for="name">Name</label>
+              <input class="form-input" type="text" id="name" name="name"
+                     placeholder="Enter your name" maxlength="16" />
+            </div>
+
+            <!-- Introduction -->
+            <div class="form-group">
+              <label class="form-label" for="introduction">Introduction</label>
+              <textarea class="form-textarea" id="introduction" name="introduction"
+                        placeholder="Tell us briefly about yourself and what you want to learn..."
+                        maxlength="200"></textarea>
+            </div>
+
+            <!-- Domain & Language -->
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="domain">Domain</label>
+                <select class="form-select" id="domain" name="domain">
+                  <option value="" disabled selected>Select domain</option>
+                  <option value="FRONTEND">Frontend</option>
+                  <option value="BACKEND">Backend</option>
+                  <option value="FULLSTACK">Fullstack</option>
+                  <option value="DEVOPS">DevOps</option>
+                  <option value="ML">Machine Learning</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="preferredLanguage">Language</label>
+                <select class="form-select" id="preferredLanguage" name="preferredLanguage">
+                  <option value="" disabled selected>Select language</option>
+                  <option value="JAVASCRIPT">JavaScript</option>
+                  <option value="TYPESCRIPT">TypeScript</option>
+                  <option value="PYTHON">Python</option>
+                  <option value="GO">Go</option>
+                  <option value="RUST">Rust</option>
+                  <option value="JAVA">Java</option>
+                  <option value="CPP">C++</option>
+                  <option value="CSHARP">C#</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Current Level -->
+            <div class="form-group">
+              <label class="form-label" for="currentLevel">Current Level</label>
+              <select class="form-select" id="currentLevel" name="currentLevel">
+                <option value="" disabled selected>Select your level</option>
+                <option value="BEGINNER">Beginner</option>
+                <option value="INTERMEDIATE">Intermediate</option>
+                <option value="ADVANCED">Advanced</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- ===== SHARED FIELDS ===== -->
+
+          <!-- Email -->
+          <div class="form-group">
+            <label class="form-label" for="email">Email address</label>
+            <input class="form-input" type="email" id="email" name="email"
+                   placeholder="Enter your email" />
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-input" type="password" id="password" name="password"
+                   placeholder="••••••••" minlength="8" maxlength="16" />
+            <div class="signup-fields visible" id="signup-pw-hints">
+              <div class="form-hints" id="password-hints">
+                <span class="hint" id="hint-length">8–16 characters</span>
+                <span class="hint" id="hint-upper">Uppercase letter</span>
+                <span class="hint" id="hint-lower">Lowercase letter</span>
+                <span class="hint" id="hint-number">Number</span>
+                <span class="hint" id="hint-special">Special character</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Confirm Password (signup only) -->
+          <div class="signup-fields visible" id="signup-confirm-pw">
+            <div class="form-group">
+              <label class="form-label" for="confirmPassword">Confirm Password</label>
+              <input class="form-input" type="password" id="confirmPassword" name="confirmPassword"
+                     placeholder="••••••••" maxlength="16" />
+              <span class="form-field-error" id="confirm-error"></span>
+            </div>
+          </div>
+
+          <!-- Terms checkbox (signup only) -->
+          <div class="signup-fields visible" id="signup-terms">
+            <div class="form-checkbox-group">
+              <input class="form-checkbox" type="checkbox" id="terms" name="terms" />
+              <label class="form-checkbox-label" for="terms">I agree to the terms & policy</label>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button class="form-submit" type="submit" id="auth-submit">Sign Up</button>
+
+        </form>
+
+        <!-- Toggle -->
+        <div class="login-toggle">
+          <span id="toggle-text">Have an account?</span>
+          <a href="#" id="toggle-link">Sign In</a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

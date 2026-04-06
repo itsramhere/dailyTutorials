@@ -9,8 +9,7 @@ const userRepository_1 = require("../repositories/userRepository");
 const customErrors_1 = require("../utils/customErrors");
 const crypto_1 = __importDefault(require("crypto"));
 const util_1 = require("util");
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const JWT_SECRET = process.env.JWT_SECRET;
+const authUtils_1 = require("../utils/authUtils");
 const pbkdf2 = (0, util_1.promisify)(crypto_1.default.pbkdf2);
 async function hashPassword(password) {
     const salt = crypto_1.default.randomBytes(16).toString("hex");
@@ -27,7 +26,7 @@ async function newUser(user) {
         throw new customErrors_1.AppError("User already exists with this email id.", 400);
     }
     const hashedPassword = await hashPassword(user.password);
-    return (0, userRepository_1.createUser)({
+    const createdUser = await (0, userRepository_1.createUser)({
         name: user.name,
         email: user.email,
         introduction: user.introduction,
@@ -36,7 +35,10 @@ async function newUser(user) {
         currentLevel: user.currentLevel,
         topicsCovered: [],
         hashed_password: hashedPassword,
+        role: user.role || 'user'
     });
+    const token = (0, authUtils_1.generateToken)({ id: createdUser.id, email: createdUser.email });
+    return { ...createdUser, token };
 }
 async function loginUser(email, password) {
     const thisUser = await (0, userRepository_1.getUserByEmail)(email);
@@ -47,13 +49,8 @@ async function loginUser(email, password) {
     if (!passwordMatch) {
         throw new customErrors_1.AppError("Invalid credentials.", 400);
     }
-    const jwtToken = await issueToken(thisUser.id, thisUser.email);
+    const jwtToken = (0, authUtils_1.generateToken)({ id: thisUser.id, email: thisUser.email });
     return jwtToken;
-}
-function issueToken(userId, userEmail) {
-    return jsonwebtoken_1.default.sign({ id: userId,
-        email: userEmail,
-    }, JWT_SECRET, { expiresIn: "1h" });
 }
 async function verifyPassword(password, stored) {
     const [iterationsStr, salt, originalHash] = stored.split(":");

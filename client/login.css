@@ -1,0 +1,396 @@
+/* ========== LOGIN PAGE STYLES ========== */
+
+/* Override the global overflow:hidden from styles.css */
+html, body {
+  overflow: auto !important;
+  height: auto !important;
+}
+
+.login-page {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+/* ========== FULL-PAGE BACKGROUND ========== */
+.login-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('assets/signupbg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* Try common extensions */
+@supports (background-image: url('assets/signupbg.jpg')) {
+  .login-bg {
+    background-image: url('assets/signupbg.jpg');
+  }
+}
+
+.login-bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+/* ========== FORM PANEL — OVERLAID ON BG ========== */
+.login-panel {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 520px;
+  padding: 3rem 3.5rem;
+  margin: 3rem 1.5rem;
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+}
+
+.login-panel-inner {
+  width: 100%;
+}
+
+/* Back to home link */
+.login-back {
+  display: inline-block;
+  margin-bottom: 2rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-back:hover {
+  color: #ffffff;
+}
+
+/* Heading */
+.login-heading {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.login-subheading {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 2rem;
+}
+
+/* ========== FORM ELEMENTS ========== */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.4rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.form-input:focus {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Select dropdown */
+.form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+
+.form-select:focus {
+  border-color: rgba(255, 255, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.form-select option {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Textarea */
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  outline: none;
+  resize: vertical;
+  min-height: 70px;
+}
+
+.form-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.form-textarea:focus {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Two column row */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Checkbox */
+.form-checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #ffffff;
+  cursor: pointer;
+}
+
+.form-checkbox-label {
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+/* ========== SUBMIT BUTTON ========== */
+.form-submit {
+  width: 100%;
+  padding: 0.85rem;
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  color: #0a0a0a;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.form-submit:hover {
+  background: #e6e6e6;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+.form-submit:active {
+  transform: scale(0.98);
+}
+
+/* ========== TOGGLE LINK ========== */
+.login-toggle {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.login-toggle a {
+  color: #ffffff;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 0.3rem;
+  transition: opacity 0.3s ease;
+}
+
+.login-toggle a:hover {
+  opacity: 0.7;
+}
+
+/* ========== ERROR MESSAGE ========== */
+.form-error {
+  display: none;
+  margin-bottom: 1rem;
+  padding: 0.65rem 1rem;
+  background: rgba(255, 80, 80, 0.1);
+  border: 1px solid rgba(255, 80, 80, 0.25);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #ff6b6b;
+}
+
+.form-error.visible {
+  display: block;
+}
+
+/* ========== SUCCESS MESSAGE ========== */
+.form-success {
+  display: none;
+  margin-bottom: 1rem;
+  padding: 0.65rem 1rem;
+  background: rgba(80, 255, 120, 0.08);
+  border: 1px solid rgba(80, 255, 120, 0.2);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #6bffa0;
+}
+
+.form-success.visible {
+  display: block;
+}
+
+/* ========== PASSWORD HINTS ========== */
+.form-hints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.hint {
+  font-size: 0.68rem;
+  font-weight: 400;
+  padding: 0.2rem 0.55rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.hint.valid {
+  color: #6bffa0;
+  border-color: rgba(107, 255, 160, 0.3);
+  background: rgba(107, 255, 160, 0.06);
+}
+
+.hint.invalid {
+  color: #ff6b6b;
+  border-color: rgba(255, 107, 107, 0.3);
+  background: rgba(255, 107, 107, 0.06);
+}
+
+/* ========== INLINE FIELD ERRORS ========== */
+.form-field-error {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #ff6b6b;
+  min-height: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+/* ========== INPUT VALIDATION STATES ========== */
+.form-input.input-error,
+.form-select.input-error,
+.form-textarea.input-error {
+  border-color: rgba(255, 107, 107, 0.5);
+}
+
+.form-input.input-valid,
+.form-select.input-valid,
+.form-textarea.input-valid {
+  border-color: rgba(107, 255, 160, 0.3);
+}
+
+/* ========== SIGNUP-ONLY FIELDS ========== */
+.signup-fields {
+  display: none;
+}
+
+.signup-fields.visible {
+  display: block;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-panel {
+  animation: fadeIn 0.7s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+  .login-panel {
+    padding: 2rem 1.5rem;
+    margin: 2rem 1rem;
+    border-radius: 12px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .login-back {
+    margin-bottom: 1.5rem;
+  }
+}
